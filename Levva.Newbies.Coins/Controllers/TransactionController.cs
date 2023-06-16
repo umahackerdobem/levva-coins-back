@@ -1,5 +1,6 @@
 ﻿using Levva.Newbies.Coins.Logic.Dtos;
 using Levva.Newbies.Coins.Logic.Interfaces;
+using Levva.Newbies.Coins.Logic.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +38,15 @@ namespace Levva.Newbies.Coins.Controllers
         public ActionResult<List<TransactionDto>> GetAll()
         {
             return _service.GetAll();
+        }
+
+        [HttpGet("search")]
+
+        public ActionResult<List<TransactionDto>> Search([FromQuery] string search)
+        {
+
+            return Ok(_service.SearchByDescription(search));
+
         }
 
         [HttpPut]
